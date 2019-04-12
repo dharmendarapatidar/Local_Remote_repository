@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reviews</title>
+    <link href="{% static "css\bootstrap.css" %}"type="text/css" rel="stylesheet">
+    <style>
+        input{border: 2px solid black; border-radius: 10px; padding: 10px}
+        h3{ text-align: left;}
+        h2{text-align: left ;border: 1px solid white}
+        button{ background: black;color: white; }
+        button:hover{background: #8a6d3b; color: purple; font-size: 20px;}
+        a{margin-left:500px; background: yellow;padding: 7px; border: white solid 2px;}
+        a:hover{background: black; color: white; border-radius: 5px}
+        h1{color: red;}
+        .th1{padding: 20px}
+        .col-md-8{background: #1b6d85; font-size: 20px;border: 4px solid silver; border-radius: 6px;}
+        #table2{border: 4px solid blue;}
+        .form-control{width: 400px; text-align: center}
+
+    </style>
+</head>
+<body background="pexels-photo-1269968.jpeg"><br>
+<h1>{{ msg }}</h1>
+<a href="/home/" >Home Page</a>
+{#{% if type == "Review" %}#}
+<br>
+<br>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <center><div class="col-md-8">
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="regno">Registration No:</label>
+            <input class="form-control" type="number" name="regno" id="regno" required>
+        </div>
+        <div class="form-group">
+            <label for="userid">User Id:</label>
+            <input class="form-control" type="number" name="userid" id="userid" required>
+        </div>
+        <div class="form-group">
+            <label for="passd">Password</label>
+            <input class="form-control" id="passd" type="password" name="pswd" required>
+        </div>
+        <div class="form-group">
+            <input class="btn btn-primary" type="submit" value="Show">
+        </div>
+    </form>
+    {#{% endif %}#}
+    {% if type == "Comment"%}
+    <table id="table2">
+    <tr>
+        <th class="th2">User Id</th>
+        <th class="th2">Email Id</th>
+        <th class="th2">Registration No</th>
+        <th class="th2">Mobile Number</th>
+        <th class="th2">Date:</th>
+        <th class="th2">Course:</th>
+        <th class="th2"> See Review</th>
+    </tr>
+    {% for s in data %}
+    <tr class="tr2">
+        <td class="td1">{{ s.User_Id }}</td>
+        <td class="td1">{{ s.Email}}</td>
+        <td class="td1">{{ s.Reg_No}}</td>
+        <td class="td1">{{ s.Mobile}}</td>
+        <td class="td1">{{ s.Date}}</td>
+        {% for cd in cdtails %}
+            <td class="td1">{{ cd.Course_Opted}}</td>
+            {% endfor %}
+        <td class="td1"><form action="/allcomments/" method="post">
+            {% csrf_token %}
+            <button type="submit">
+                <input type="hidden" name="email" value="{{ s.Email}}">00</button></form></td>
+    </tr>
+{% endfor %}
+</table>
+{% endif %}
+{% if type == "AllComments" %}
+    {% for s in comments %}
+<div>
+    <h3>->&nbsp &nbsp {{ s.home_id }}</h3>
+    <h2>-::)&nbsp &nbsp{{ s.Comments}}</h2>
+</div>
+    {% endfor %}
+{% endif %}
+</div>
+    </center>
+<div class="col-md-2"></div>
+</div>
+</body>
+</html>
+{#        <tr>#}
+{#        <th class="th1"> Course :</th>#}
+{#        <td><select name="course" required>#}
+{#            <option value="Python" selected>Python</option>#}
+{#            <option value="Django">Django</option>#}
+{#            <option value="RestApI">RestApI</option>#}
+{#            <option value="Core JAVA">Core JAVA</option>#}
+{#            <option value="Advanced JAVA">Advanced JAVA</option>#}
+{#            <option value="Machine Learning">Machine Learning</option>#}
+{#        </select></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#        <th class="th1"></th>#}
+{#        <td><input type="submit" value="Reviews"></td>#}
+{#    </tr>#}
+{#</table>#}

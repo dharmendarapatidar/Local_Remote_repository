@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail Page</title>
+    <style>
+         #show{ text-align: center ;background: coral; color: white; padding: 10px; border: 1px dashed black; border-radius: 8px}
+         #show:hover{ background: greenyellow; color: white;}
+        body{background-image: url("https://images.pexels.com/photos/1269968/pexels-photo-1269968.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")}
+        table{background: white; margin-top: 200px; margin-left: 600px; border-radius: 10px; border: 2px solid black; padding: 10px;padding: 50px;}
+        .th{border: 2px solid blue;padding: 10px; border-radius: 10px}
+        .td{border: 2px solid black; padding: 10px; border-radius: 6px;}
+        input,select{ border: black 2px; font-size: 20px}
+        tr{margin: 100px}
+        #submit{padding-left: 100px;padding-top: 10px}
+        h1{color: red}
+    </style>
+</head>
+<body background="pexels-photo-1269968.jpeg">
+{#{% if type == "Enter_Details"%}#}
+<form method="post">
+    {% csrf_token %}
+    <marquee><h1>Practise makes perfect</h1></marquee>
+
+    <table>
+        <tr>
+            <th class="th"> From :</th>
+            <td class="td"><input type="date" name="fdate" required></td>
+            <th class="th">To    :</th>
+            <td class="td"><input type="date" name="tdate" required></td>
+        </tr>
+        <tr>
+            <th class="th"> Course:</th>
+            <td class="td"><select name="course">
+                <option value="Python">Python</option>
+                <option value="Django">Django</option>
+                <option value="Rest API">Rest API</option>
+                <option value="Core JAVA" >Core JAVA</option>
+                <option value="Advanced JAVA" >Advanced JAVA</option>
+            </select></td>
+        </tr>
+        <tr>
+            <th></th><td id="submit"><input type="submit" value="show" id="show"></td>
+        </tr>
+    </table>
+</form>
+{#{% endif %}#}
+{% if type == "Details" %}
+    <table>
+        <tr>
+            <th>Reg. No. :</th>
+            <th>First Name :</th>
+            <th>Last Name :</th>
+            <th>Email Id :</th>
+            <th>Course :</th>
+            <th>Qualification :</th>
+            <th>Date :</th>
+        </tr>
+        {% for s in valid_details %}
+        <tr>
+        <td> {{ s.Reg_No }}</td>
+        <td> {{ s.First_Name}}</td>
+        <td> {{ s.Last_Name}}</td>
+        <td> {{ s.Email}}</td>
+        <td> {{ s.Course_Opted}}</td>
+        <td> {{ s.Qualification}}</td>
+        <td>{{ s.Date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+</body>
+</html>

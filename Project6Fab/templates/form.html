@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Only</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="icon" href="{% static "images\lion.jpeg" %}">
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron">
+    <h1> This is form group testing</h1>
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputFile">File input</label>
+    <input type="file" id="exampleInputFile">
+  </div>
+    <fieldset class="form-group">
+        <legend> Are You Married</legend>
+        <div class="form-check">
+            <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option1" checked>
+            YES
+            </label>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+            NO
+            </label>
+        </div>
+    </fieldset>
+    <div class="form-group">
+        <label for=" select1"> Select Any One Course</label>
+        <select class="form-control" id=" select1">
+            <option> Core Python</option>
+            <option> Adv Python</option>
+            <option>Django</option>
+        </select>
+    </div>
+      <div class="form-group">
+        <label for=" select1"> Select Any One Course</label>
+        <select multiple class="form-control" id=" select1">
+            <option> Core Python</option>
+            <option> Adv Python</option>
+            <option>Django</option>
+        </select>
+    </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Check me out
+    </label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+    </div>
+</div>
+</body>
+</html>
